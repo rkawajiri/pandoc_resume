@@ -5,13 +5,15 @@ MAINTAINER Ryoma Kawajiri <ryoma.edison@gmail.com>
 ENV PANDOC_VERSION "1.18"
 
 # Install pandoc
-RUN cabal update \
+RUN set -ex \
+ && cabal update \
  && cabal install \
     pandoc-${PANDOC_VERSION} \
  && rm -rf ~/.cabal/packages ~/.cabal/logs
 
 # Install latex packages
-RUN apt-get update -y \
+RUN set -ex \
+ && apt-get update -y \
  && apt-get install -y --no-install-recommends \
     texlive-latex-base \
     texlive-xetex latex-xcolor \
