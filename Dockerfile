@@ -15,14 +15,8 @@ RUN set -ex \
 RUN set -ex \
  && apt-get update -y \
  && apt-get install -y --no-install-recommends \
-    texlive-latex-base \
-    texlive-xetex latex-xcolor \
-    texlive-math-extra \
-    texlive-latex-extra \
-    texlive-fonts-extra \
-    texlive-bibtex-extra \
-    fontconfig \
     context \
+    fonts-texgyre \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /source
