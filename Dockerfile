@@ -1,20 +1,24 @@
-FROM haskell:7.10.3
+FROM debian:jessie-slim
 
 MAINTAINER Ryoma Kawajiri <ryoma.edison@gmail.com>
 
-ENV PANDOC_VERSION "1.18"
-
-# Install pandoc
+# Install Pandoc
+ENV PANDOC_VERSION "1.19.2.1"
+ENV BUILD_DEPS="wget ca-certificates"
 RUN set -ex \
- && cabal update \
- && cabal install \
-    pandoc-${PANDOC_VERSION} \
- && rm -rf ~/.cabal/packages ~/.cabal/logs
+&& apt-get update \
+&& apt-get install -y --no-install-recommends ${BUILD_DEPS} \
+&& wget -O pandoc.deb https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-1-amd64.deb \
+&& dpkg -i pandoc.deb \
+&& rm pandoc.deb \
+&& apt-get remove -y ${BUILD_DEPS} \
+&& rm -rf /var/lib/apt/lists/*
 
 # Install latex packages
 RUN set -ex \
  && apt-get update -y \
  && apt-get install -y --no-install-recommends \
+    make \
     context \
     fonts-texgyre \
  && rm -rf /var/lib/apt/lists/*
