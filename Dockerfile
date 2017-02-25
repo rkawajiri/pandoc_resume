@@ -19,6 +19,8 @@ RUN set -ex \
  && apt-get update -y \
  && apt-get install -y --no-install-recommends \
     make \
+    omake \
+    gamin \
     context \
     fonts-texgyre \
  && rm -rf /var/lib/apt/lists/*

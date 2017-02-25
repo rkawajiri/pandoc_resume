@@ -7,3 +7,8 @@ resume.tex
 *.swp
 *.docx
 *.rtf
+
+.omakedb
+.omakedb.lock
+OMakefile.omc
+OMakeroot.omc
