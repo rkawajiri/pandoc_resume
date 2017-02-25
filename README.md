@@ -19,3 +19,7 @@ Requirements:
 When you don't want to directly install packages on your machine, you can build the resumes with docker by using the below command.
 
     docker-compose run --rm make
+
+You can use omake for polling file changes.
+
+    docker-compose run --rm omake -P
