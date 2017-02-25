@@ -5,3 +5,9 @@ services:
     volumes:
       - './:/source'
     entrypoint: make
+
+  omake:
+    image: rkawajiri/pandoc_resume
+    volumes:
+      - './:/source'
+    entrypoint: omake
