@@ -1,3 +1,7 @@
+NAME=rkawajiri
+HASH=$(shell git rev-parse --short HEAD)
+TIMESTAMP=$(shell date +"%Y%m%d%H%M%S")
+
 all: html pdf docx rtf
 
 pdf: resume.pdf
@@ -21,6 +25,12 @@ resume.docx: resume.md
 rtf: resume.rtf
 resume.rtf: resume.md
 	pandoc -s -S resume.md -o resume.rtf
+
+release: resume.pdf resume.docx resume.rtf resume.html
+	cp resume.pdf ${NAME}-${TIMESTAMP}-${HASH}.pdf
+	cp resume.docx ${NAME}-${TIMESTAMP}-${HASH}.docx
+	cp resume.rtf ${NAME}-${TIMESTAMP}-${HASH}.rtf
+	cp resume.html ${NAME}-${TIMESTAMP}-${HASH}.html
 
 clean:
 	rm -f resume.html
