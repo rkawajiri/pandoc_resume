@@ -18,6 +18,7 @@ RUN set -ex \
 RUN set -ex \
  && apt-get update -y \
  && apt-get install -y --no-install-recommends \
+    git \
     make \
     omake \
     gamin \
